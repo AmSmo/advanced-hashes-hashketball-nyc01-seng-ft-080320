@@ -1,4 +1,5 @@
 # Write your code below game_hash
+require 'pry'
 def game_hash
   {
     home: {
@@ -127,3 +128,102 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player)
+  game = game_hash
+  individual_stats = get_player(player)
+  return individual_stats[:points]
+end
+
+def shoe_size(player)
+  individual_stats = get_player(player)
+  return individual_stats[:shoe]  
+end
+
+def get_player(player)
+  game_hash.each_value do |team|
+     players = team[:players]
+     players.each do |individual| 
+       if individual[:player_name] == player
+         return individual
+       end
+      end
+  end
+end
+
+def team_colors(team)
+  game_hash.each_value do |where|
+    if where[:team_name] == team
+      return where[:colors]
+    end
+  end
+end
+
+def team_names
+  teams =[]
+  game_hash.each_value do |team|
+    teams << team[:team_name]
+  end
+  teams
+end
+
+def player_numbers(team)
+  numbers = []
+  game_hash.each_value do |where|
+    if where[:team_name] == team
+      where[:players].each do |player|
+        numbers << player[:number]
+      end
+    end
+  end
+  numbers
+end
+
+def player_stats(player)
+  get_player(player)
+end
+
+def big_shoe_rebounds
+  biggest_shoe = 0
+  winner = nil
+  game_hash.each_value do |team|
+     players = team[:players]
+     players.each do |individual| 
+       if individual[:shoe] > biggest_shoe
+         biggest_shoe = individual[:shoe]
+         winner = individual
+       end
+      end
+  end
+  winner[:rebounds]
+end
+
+def most_points_scored
+  most_points = 0
+  winner = nil
+  game_hash.each_value do |team|
+     players = team[:players]
+     players.each do |individual| 
+       if individual[:points] > most_points
+         most_points = individual[:points]
+         winner = individual
+       end
+      end
+  end
+  winner[:player_name]
+end
+
+def most_of(stat)
+  most = 0
+  winner = nil
+  game_hash.each_value do |team|
+     players = team[:players]
+     players.each do |individual| 
+       if individual[stat] > most
+         most = individual[stat]
+         winner = individual
+       end
+      end
+  end
+  winner[:player_name]
+end
