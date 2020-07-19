@@ -227,3 +227,17 @@ def most_of(stat)
   end
   winner[:player_name]
 end
+
+def winning_team
+  scores = []
+  game_hash.each_value do |team|
+    sum = 0
+     players = team[:players]
+     players.each do |individual| 
+       sum += individual[:points]
+       
+    end
+    scores.push("#{team}: #{sum}")
+  end
+  scores
+end
