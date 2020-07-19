@@ -237,7 +237,7 @@ def winning_team
        sum += individual[:points]
        
     end
-    scores.push("#{team}: #{sum}")
+    scores.push("#{team[:team_name]}: #{sum}")
   end
   scores
 end
