@@ -243,7 +243,7 @@ def winning_team
 end
 
 def player_with_longest_name
-  most_of(:player_name.length)
+  most_of([:player_name].length)
   # most = 0
   # winner = nil
   # game_hash.each_value do |team|
